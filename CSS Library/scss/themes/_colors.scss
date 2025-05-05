@@ -1,4 +1,4 @@
-@use "variables" as *;
+@use "abstracts/index" as *;
 @use "sass:color";
 
 @each $key, $val in $colors {

@@ -1,0 +1,43 @@
+@use "abstracts/index" as *;
+@use "sass:color";
+
+// 📌 NOTE: Using @mixin in Sass
+// @mixin defines reusable styles and can accept parameters (with default values).
+// Use @include to apply the mixin, optionally passing arguments.
+//
+// Example:
+// @mixin btn($bg-color: #e2e2e2) { ... }
+// .btn-primary { @include btn(#326dee); }
+
+@mixin btn($bg-color: #e2e2e2) {
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  border: 0;
+  padding: $base-padding $base-padding * 2;
+  border-radius: $base-border-radius;
+  background-color: $bg-color;
+}
+
+.btn {
+  @include btn;
+}
+
+@each $key, $val in $colors {
+  .btn-#{$key} {
+    @include btn($val);
+
+    &:hover {
+      background-color: color.adjust($val, $lightness: 5%);
+    }
+  }
+
+  .btn-outlined-#{$key} {
+    @include btn(#fff);
+    border: $base-border-width solid $val;
+
+    &:hover {
+      background-color: $val;
+    }
+  }
+}

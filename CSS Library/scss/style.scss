@@ -43,17 +43,19 @@
 // ✅ Preferred: explicit @use per file keeps styles modular and conflict-free.
 
 
-// All @use must be at the top (order matters)
+// All @use must be at the top
 // variables & functions
 @use "abstracts/index" as *;
 
 // base
 @use "base/index" as *;
 
-// colors
+// themes (colors)
+@use "themes/index" as *;
 
 // components (buttons, card, navbar)
 @use "components/card";
+@use "components/button";
 
 // utilities (margin, padding, opacity)
 
