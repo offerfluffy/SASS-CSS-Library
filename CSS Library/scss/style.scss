@@ -48,8 +48,9 @@
 // variables & functions
 @use "abstracts/index" as *;
 
-// base
+// base & layout
 @use "base/index" as base;
+@use "layouts/grid";
 
 // themes (colors)
 @use "themes/index" as themes;
