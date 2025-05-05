@@ -8,7 +8,7 @@ function buildStyles() {
 }
 
 function watchTask() {
-  watch(["./scss/style.css"], buildStyles)
+  watch(["./scss/style.scss"], buildStyles)
 }
 
 exports.default = series(buildStyles, watchTask)
