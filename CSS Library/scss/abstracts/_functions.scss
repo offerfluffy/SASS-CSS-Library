@@ -1,0 +1,8 @@
+@use "sass:color";
+
+@function light-complement($color) {
+  $complement: color.complement($color);
+  $light-complement: color.adjust($complement, $lightness: 30%);
+
+  @return $light-complement
+}
