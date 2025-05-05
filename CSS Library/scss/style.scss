@@ -10,43 +10,40 @@
 // This structure helps keep the project organized and makes it easy to scale and modify styles.
 
 // 📌 NOTE: Using @forward in Sass
-// @forward is used to re-export variables, mixins, and functions 
-// from partial files (like _variables.scss, _mixins.scss) 
-// so they can be loaded via a single entry point (e.g., index.scss).
-//
-// Example:
-// ─ abstracts/
-//   ├─ _variables.scss   → defines $primary-color
-//   ├─ _mixins.scss      → defines @mixin center
-//   └─ index.scss        → @forward "variables"; @forward "mixins";
-//
-// In main style.scss:
-// @use "abstracts/index" as *;
-//
-// Result: $primary-color and @include center are available here
+// - @forward re-exports variables, mixins, and functions from partials (e.g., _variables.scss, _mixins.scss).
+// - Allows loading everything via a single entry (e.g., index.scss).
+
+// Example in abstracts/index.scss:
+//   @forward "variables";   // makes $primary-color available
+//   @forward "mixins";      // makes @mixin center available
+
+// In style.scss:
+//   @use "abstracts/index" as *;  // imports all forwarded items
+
+// Result: $primary-color, @include center are available globally in style.scss
 
 // 📌 NOTE: Using @use in Sass
-// @use is used to import Sass files, making their variables, mixins, and functions available.
-// It prevents polluting the global namespace and automatically adds a namespace to avoid naming conflicts.
+// - @use imports modules (variables, mixins, funcs) without polluting globals.
+// - Files are isolated: EACH file must `@use` what it needs.
 //
-// Example:
-// ─ abstracts/
-//   ├─ _variables.scss   → defines $primary-color
-//   ├─ _mixins.scss      → defines @mixin center
-//   └─ index.scss        → @use "variables"; @use "mixins";
+// Example in abstracts/index.scss:
+//   @use "variables";    // defines $primary-color
+//   @use "mixins";       // defines @mixin center
 //
-// In main style.scss:
-// @use "abstracts/index" as *;  // "as *" makes everything available globally
+// In style.scss:
+//   @use "abstracts/index" as *;  // makes $primary-color, @include center available
 //
-// If you don't use `as *`, the variables, mixins, and functions will be available under the namespace:
-// @use "abstracts/index";  // Access them like this: abstracts.$primary-color, abstracts.center
+// In components/card.scss:
+//   @use "../abstracts/index" as *; // must re-import to access $primary-color here
 //
-// Result: $primary-color and @include center are available here.
+// Without `as *`, use the namespace:
+//   @use "abstracts/index"; 
+//   .box { color: abstracts.$primary-color; }
 //
-// @use is recommended over @import because it is more modular, faster, and future-proof.
+// ✅ Preferred: explicit @use per file keeps styles modular and conflict-free.
 
-// @use must be at the top
 
+// All @use must be at the top (order matters)
 // variables & functions
 @use "abstracts/index" as *;
 
@@ -55,9 +52,8 @@
 
 // colors
 
-
 // components (buttons, card, navbar)
-
+@use "components/card";
 
 // utilities (margin, padding, opacity)
 

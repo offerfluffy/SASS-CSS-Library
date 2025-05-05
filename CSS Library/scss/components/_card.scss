@@ -1,0 +1,22 @@
+@use "../abstracts/index" as *;
+
+.card {
+  display: block;
+  padding: $base-padding;
+  border: $base-border-width solid #ddd;
+  box-shadow: $base-box-shadow;
+
+  &-title {
+    font-size: $base-font-size;
+    font-weight: bold;
+    padding-bottom: $base-padding;
+  }
+
+  &-body {
+    font-size: $base-font-size;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}
