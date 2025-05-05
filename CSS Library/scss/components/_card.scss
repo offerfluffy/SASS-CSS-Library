@@ -1,13 +1,15 @@
 @use "../abstracts/index" as *;
+@use "sass:math";
 
 .card {
   display: block;
   padding: $base-padding;
   border: $base-border-width solid #ddd;
+  border-radius: math.div($base-border-radius, 4);
   box-shadow: $base-box-shadow;
 
   &-title {
-    font-size: $base-font-size;
+    font-size: $font-size-lg;
     font-weight: bold;
     padding-bottom: $base-padding;
   }
