@@ -1,69 +1,66 @@
+// 📁 FOLDER NAMING CONVENTION:
+// ─ abstracts/      → variables, functions, mixins available everywhere
+// ─ base/           → resets and base styles (e.g., _reset.scss, _typography.scss)
+// ─ layout/         → layout organization (e.g., header, footer, grid)
+// ─ components/     → reusable UI blocks (e.g., buttons, cards)
+// ─ pages/          → page-specific styles (e.g., _home.scss, _about.scss)
+// ─ themes/         → styles for theme switching (light/dark)
+// ─ utils/          → helper classes for spacing, text trimming, etc.
+//
+// This structure helps keep the project organized and makes it easy to scale and modify styles.
+
+// 📌 NOTE: Using @forward in Sass
+// @forward is used to re-export variables, mixins, and functions 
+// from partial files (like _variables.scss, _mixins.scss) 
+// so they can be loaded via a single entry point (e.g., index.scss).
+//
+// Example:
+// ─ abstracts/
+//   ├─ _variables.scss   → defines $primary-color
+//   ├─ _mixins.scss      → defines @mixin center
+//   └─ index.scss        → @forward "variables"; @forward "mixins";
+//
+// In main style.scss:
+// @use "abstracts/index" as *;
+//
+// Result: $primary-color and @include center are available here
+
+// 📌 NOTE: Using @use in Sass
+// @use is used to import Sass files, making their variables, mixins, and functions available.
+// It prevents polluting the global namespace and automatically adds a namespace to avoid naming conflicts.
+//
+// Example:
+// ─ abstracts/
+//   ├─ _variables.scss   → defines $primary-color
+//   ├─ _mixins.scss      → defines @mixin center
+//   └─ index.scss        → @use "variables"; @use "mixins";
+//
+// In main style.scss:
+// @use "abstracts/index" as *;  // "as *" makes everything available globally
+//
+// If you don't use `as *`, the variables, mixins, and functions will be available under the namespace:
+// @use "abstracts/index";  // Access them like this: abstracts.$primary-color, abstracts.center
+//
+// Result: $primary-color and @include center are available here.
+//
+// @use is recommended over @import because it is more modular, faster, and future-proof.
+
+// @use must be at the top
+
+// variables & functions
+@use "abstracts/index" as *;
+
+// base
+@use "base/index" as *;
+
+// colors
+
+
+// components (buttons, card, navbar)
+
+
+// utilities (margin, padding, opacity)
+
+
 // import google font
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-@import "variables";
-
-/* reset styles */
-* {
-  color: inherit;
-  margin: 0;
-}
-
-body {
-  font-family: Poppins;
-}
-
-ul {
-  padding: 0;
-  list-style-type: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-hr {
-  border: 0;
-  border-top: 1px dotted #efefef;
-}
-
-img {
-  max-width: 100%;
-}
-
-h1 {
-  color: $primary;
-  margin-bottom: $base-margin;
-}
-
-a {
-  color: $secondary;
-}
-
-button {
-  color: #fff;
-  border: 0;
-  background: $primary;
-  border-radius: $base-border-radius;
-  padding: $base-padding;
-}
-
-.error {
-  color: $error;
-  border-style: solid;
-  border-color: $error;
-  border-radius: $base-border-radius;
-  border-width: $base-border-width;
-  margin: $base-margin;
-  padding: $base-padding;
-}
-
-.notification {
-  color: $secondary;
-  border-style: solid;
-  border-color: $secondary;
-  border-radius: $base-border-radius;
-  border-width: $base-border-width;
-  margin: $base-margin;
-  padding: $base-padding;
-}
