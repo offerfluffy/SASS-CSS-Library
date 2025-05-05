@@ -1,0 +1,19 @@
+@use "abstracts/index" as *;
+@use "sass:math";
+@use "sass:map";
+
+$utilities-display: (
+  "display": (
+    "prefix": "display",
+    "values": (
+      "n": none,
+      "b": block,
+      "f": flex,
+      "i": inline,
+      "i-b": inline-block
+    )
+  ),
+);
+
+// generate utility classes
+@include generate-utility-classes($utilities-display);

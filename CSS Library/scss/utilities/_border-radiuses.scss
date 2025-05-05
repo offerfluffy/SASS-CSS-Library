@@ -1,0 +1,20 @@
+@use "abstracts/index" as *;
+@use "sass:math";
+@use "sass:map";
+
+$utilities-border-radius: (
+  "border-radius": (
+    "prefix": "br",
+    "values": (
+      "default": $base-border-radius,
+      "none": 0,
+      "xs": math.div($base-border-radius, 4),
+      "sm": math.div($base-border-radius, 2),
+      "lg": $base-border-radius * 2,
+      "full": 50%,
+    )
+  ),
+);
+
+// generate utility classes
+@include generate-utility-classes($utilities-border-radius);
