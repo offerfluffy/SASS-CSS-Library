@@ -1,0 +1,35 @@
+@use "variables" as *;
+@use "sass:color";
+
+@each $key, $val in $colors{
+  .text-#{$key} {
+    color: $val
+  }
+
+  .bg-#{$key} {
+    background-color: $val;
+  }
+
+  // light variations
+  @for $i from 1 through 9 {
+    .text-#{$key}-light-#{$i} {
+      color: color.mix(white, $val, $i * 10%)
+    }
+
+    .bg-#{$key}-light-#{$i} {
+      background-color: color.mix(white, $val, $i * 10%)
+    }
+  }
+
+  // dark variations
+  @for $i from 1 through 9 {
+    .text-#{$key}-dark-#{$i} {
+      color: color.mix(black, $val, $i * 10%)
+    }
+
+    .bg-#{$key}-dark-#{$i} {
+      background-color: color.mix(black, $val, $i * 10%)
+    }
+  }
+}
+
