@@ -1,0 +1,43 @@
+@use "abstracts/index" as *;
+
+// 🔹 @mixin vs @extend
+//
+// @mixin:
+// - Can take arguments.
+// - Styles are duplicated in compiled CSS.
+// - More flexible, reusable with @include.
+//
+// @extend:
+// - No arguments allowed.
+// - Selectors are merged (comma-separated).
+// - Less CSS output, but can cause tight coupling.
+
+// Placeholder that is not compiled %
+%flex-layout {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.navbar {
+  @extend %flex-layout;
+  padding: $base-padding $base-padding * 2;
+  box-shadow: $base-box-shadow;
+
+  .site-title {
+    font-size: $font-size-lg;
+  }
+
+  .container {
+    @extend %flex-layout;
+  }
+}
+
+@each $k, $v in $colors {
+  .navbar-#{$k} {
+    @extend .navbar;
+    background-color: $v;
+  }
+}
