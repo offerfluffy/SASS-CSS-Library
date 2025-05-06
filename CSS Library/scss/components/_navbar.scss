@@ -35,9 +35,20 @@
   }
 }
 
+.navbar-sticky {
+  @extend .navbar;
+  position: sticky;
+  top: 0;
+}
+
 @each $k, $v in $colors {
   .navbar-#{$k} {
     @extend .navbar;
+    background-color: $v;
+  }
+
+  .navbar-sticky-#{$k}{
+    @extend .navbar-sticky;
     background-color: $v;
   }
 }
